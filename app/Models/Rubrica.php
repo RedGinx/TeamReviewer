@@ -9,5 +9,11 @@ class Rubrica extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'criterios', 'puntuacion_maxima'];
+    protected $fillable = ['codigo', 'titulo', 'descripcion', 'preguntas', 'claridad', 'comentario', 'preguntas'];
+
+    protected $casts = [
+        'preguntas' => 'array',
+    ];
+
 }
+
