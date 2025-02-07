@@ -16,9 +16,8 @@
 
                         <p>{{ __('You are logged in!') }}</p>
 
-                        <div class="d-flex justify-content-around mt-3">
-                            <a href="{{ route('rubrica.create') }}" class="btn btn-primary">Crear Rúbrica</a>
-                            <a href="{{ route('ejercicio.create') }}" class="btn btn-success">Crear Ejercicio</a>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="{{ url('/rubrica') }}" class="btn btn-primary">Ir al Formulario de Rúbrica</a>
                         </div>
                     </div>
                 </div>

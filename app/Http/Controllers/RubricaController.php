@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rubrica;
 use Illuminate\Http\Request;
 use File;
 
@@ -45,5 +46,33 @@ class RubricaController extends Controller
 
         // Redirigir con un mensaje de éxito
         return redirect()->route('rubrica.guardar')->with('success', 'Rúbrica guardada con éxito.');
+    }
+
+
+    // Muestra el formulario de creación
+    public function formRubrica()
+    {
+        return view('rubrica');
+    }
+
+    // Guarda la rúbrica en la base de datos
+    public function store(Request $request)
+    {
+        // Validar los datos
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'criterios' => 'required|string',
+            'puntuacion_maxima' => 'required|integer|min:1',
+        ]);
+
+        // Crear y guardar la nueva rúbrica
+        Rubrica::create([
+            'nombre' => $request->nombre,
+            'criterios' => $request->criterios,
+            'puntuacion_maxima' => $request->puntuacion_maxima,
+        ]);
+
+        // Redireccionar con mensaje de éxito
+        return redirect('/rubrica')->with('success', 'Rúbrica creada correctamente.');
     }
 }
