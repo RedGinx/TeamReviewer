@@ -31,3 +31,12 @@ Route::get('/chat', function () {
 // routes/web.php
 Route::get('/rubrica', [RubricaController::class, 'mostrarFormulario']);
 Route::post('/rubrica/guardar', [RubricaController::class, 'guardarRubrica'])->name('rubrica.guardar');
+
+
+
+Route::resource('rubrica', RubricaController::class);
+Route::resource('ejercicio', EjercicioController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
