@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Rúbrica</title>
-</head>
-<body>
-<form action="{{ route('rubrica.guardar') }}" method="POST">
-    @csrf
-    <label for="titulo">Título de la Rúbrica:</label>
-    <input type="text" id="titulo" name="titulo" required><br><br>
+@extends('layouts.app')
 
-    <label for="argumento1">Argumento 1:</label>
-    <input type="text" id="argumento1" name="argumentos[0][nombre]" required>
-    <label for="puntuacion1">Puntuación 1:</label>
-    <input type="number" id="puntuacion1" name="argumentos[0][puntuacion]" required><br><br>
+@section('title', 'Crear Rúbrica')
 
-    <label for="argumento2">Argumento 2:</label>
-    <input type="text" id="argumento2" name="argumentos[1][nombre]" required>
-    <label for="puntuacion2">Puntuación 2:</label>
-    <input type="number" id="puntuacion2" name="argumentos[1][puntuacion]" required><br><br>
-
-    <!-- Puedes agregar más campos según lo necesites -->
-
-    <button type="submit">Guardar Rúbrica</button>
-</form>
-</body>
-</html>
+@section('content')
+    <div class="card">
+        <div class="card-header">Crear Nueva Rúbrica</div>
+        <div class="card-body">
+            <form action="{{ route('rubrica.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre de la Rúbrica</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="criterios" class="form-label">Criterios de Evaluación (separados por comas)</label>
+                    <textarea class="form-control" id="criterios" name="criterios" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="puntuacion_maxima" class="form-label">Puntuación Máxima</label>
+                    <input type="number" class="form-control" id="puntuacion_maxima" name="puntuacion_maxima" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Rúbrica</button>
+            </form>
+        </div>
+    </div>
+@endsection
