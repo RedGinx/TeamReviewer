@@ -30,15 +30,11 @@ Route::get('/chat', function () {
 
 
 
-// routes/web.php
-Route::get('/rubrica', [RubricaController::class, 'mostrarFormulario']);
-Route::post('/rubrica/guardar', [RubricaController::class, 'guardarRubrica'])->name('rubrica.guardar');
-Route::get('/rubrica-json', [RubricaJsonController::class, 'show']);
-Route::get('/rubrica', [RubricaController::class, 'formRubrica']);
+// Ruta para mostrar el formulario de creación
+Route::get('rubricas/create', [RubricaController::class, 'create'])->name('rubrica.create');
 
-//Rubrica
-//Route::get('/formRubrica', [RubricaController::class, 'formRubrica']);
-
+// Ruta para almacenar la rúbrica (POST)
+Route::post('rubricas', [RubricaController::class, 'store'])->name('rubrica.store');
 
 
 

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,6 +15,7 @@ class CreateRubricasTable extends Migration
             $table->text('descripcion');
             $table->boolean('claridad');
             $table->boolean('comentario');
+            $table->integer('num_preguntas');  // Campo para almacenar el número de preguntas
             $table->json('preguntas'); // Usamos JSON para almacenar las preguntas y puntuaciones
             $table->timestamps();
         });

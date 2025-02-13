@@ -17,7 +17,7 @@
                         <p>{{ __('You are logged in!') }}</p>
 
                         <div class="d-flex justify-content-center mt-3">
-                            <a href="{{ url('/rubrica') }}" class="btn btn-primary">Ir al Formulario de Rúbrica</a>
+                            <a href="{{ url('/rubricas/create') }}" class="btn btn-primary">Ir al Formulario de Rúbrica</a>
                         </div>
                     </div>
                 </div>
