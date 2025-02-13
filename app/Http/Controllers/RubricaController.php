@@ -26,6 +26,7 @@ class RubricaController extends Controller
             'preguntas.*.puntuacion' => 'required|integer|min:0',
         ]);
 
+
         $rubrica = new Rubrica();
         $rubrica->user_id = auth()->id();  // Guarda el ID del usuario autenticado
         $rubrica->codigo = $request->codigo;
