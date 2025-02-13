@@ -58,17 +58,19 @@
             const container = document.getElementById('preguntas_fields');
             container.innerHTML = '';  // Limpiar campos previos
 
-            for (let i = 1; i <= numPreguntas; i++) {
+            for (let i = 0; i < numPreguntas; i++) {
                 const preguntaDiv = document.createElement('div');
                 preguntaDiv.classList.add('mb-3');
                 preguntaDiv.innerHTML = `
-                    <label for="pregunta_${i}" class="form-label">Pregunta ${i}</label>
-                    <input type="text" class="form-control" id="pregunta_${i}" name="pregunta[${i}]" required>
-                    <label for="puntuacion_${i}" class="form-label">Puntuación ${i}</label>
-                    <input type="number" class="form-control" id="puntuacion_${i}" name="puntuacion[${i}]" min="0" required>
-                `;
+            <label for="preguntas_${i}_pregunta" class="form-label">Pregunta ${i + 1}</label>
+            <input type="text" class="form-control" id="preguntas_${i}_pregunta" name="preguntas[${i}][pregunta]" required>
+
+            <label for="preguntas_${i}_puntuacion" class="form-label">Puntuación ${i + 1}</label>
+            <input type="number" class="form-control" id="preguntas_${i}_puntuacion" name="preguntas[${i}][puntuacion]" min="0" required>
+        `;
                 container.appendChild(preguntaDiv);
             }
         });
+
     </script>
 @endsection

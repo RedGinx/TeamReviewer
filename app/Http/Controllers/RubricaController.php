@@ -26,15 +26,17 @@ class RubricaController extends Controller
             'preguntas.*.puntuacion' => 'required|integer|min:0',
         ]);
 
-        // Crear la nueva rúbrica
         $rubrica = new Rubrica();
+        $rubrica->user_id = auth()->id();  // Guarda el ID del usuario autenticado
         $rubrica->codigo = $request->codigo;
         $rubrica->titulo = $request->titulo;
         $rubrica->descripcion = $request->descripcion;
         $rubrica->claridad = $request->claridad;
         $rubrica->comentario = $request->comentario;
-        $rubrica->preguntas = $request->preguntas;  // Almacenar las preguntas como JSON
+        $rubrica->num_preguntas = count($request->preguntas);  // Contamos las preguntas y guardamos el número
+        $rubrica->preguntas = $request->preguntas;  // Laravel lo convierte automáticamente en JSON
         $rubrica->save();
+
 
         return redirect()->route('rubrica.create')->with('success', 'Rúbrica creada con éxito');
     }
