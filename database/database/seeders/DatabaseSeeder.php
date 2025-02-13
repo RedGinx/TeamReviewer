@@ -16,9 +16,25 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+
+
+
+        //ROLES
+        $roleAdmin = Role::create(['name' => 'admin']);
+        $roleNormal = Role::create(['name' => 'usuarioapp']);
+
+        //Creamos un usuario con rol de administrador
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]
+        )->assignRole($roleAdmin);
+        $usuariosNormales = User::factory(50)->create();
+
+        //Le establecemos el rol de usuario normal al resto
+        foreach($usuariosNormales as $usuario) {
+            $usuario->assignRole($roleNormal);
+        }
+
     }
 }
