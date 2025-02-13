@@ -45,4 +45,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/rubrica', [RubricaController::class, 'store'])->name('rubrica.store');
+//Route::post('/rubrica', [RubricaController::class, 'store'])->name('rubrica.store');
+
+
+//Rubricas
+Route::resource('rubricas', RubricaController::class)->middleware('auth');
