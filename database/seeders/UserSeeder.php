@@ -3,31 +3,42 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Spatie\Permission\Models\Role;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
-        // Crear roles si no existen
-        $profesorRole = Role::firstOrCreate(['name' => 'profesor']);
-        $alumnoRole = Role::firstOrCreate(['name' => 'alumno']);
+        //
+        $roleAdmin = Role::create(['name' => 'admin']);
+        $roleNormal = Role::create(['name' => 'usuarioapp']);
 
-        // Crear 10 usuarios
-        foreach (range(1, 10) as $index) {
-            $user = User::create([
-                'name' => "Usuario $index",
-                'email' => "usuario$index@example.com",
-                'password' => bcrypt('password'), // Asegúrate de usar una contraseña segura
-            ]);
+        User::create([
+            'name' => 'profe',
+            'email' => "admin@app.lan",
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            ]
+        )->assignRole($roleAdmin);
+        $usuariosAdmin = User::factory(4)->create();
+        $usuariosNormales = User::factory(50)->create();
 
-            // Asignar roles de manera alternada
-            if ($index % 2 == 0) {
-                $user->assignRole($profesorRole);
-            } else {
-                $user->assignRole($alumnoRole);
-            }
+
+        foreach($usuariosAdmin as $usuario) {
+            $usuario->assignRole($roleAdmin);
         }
+        foreach($usuariosNormales as $usuario) {
+            $usuario->assignRole($roleNormal);
+        }
+
+
+
     }
 }

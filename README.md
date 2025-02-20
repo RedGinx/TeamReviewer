@@ -1,10 +1,17 @@
-# TeamReviewer
-## Proyecto de psp revision automática de ejercicios conectando con Drive y ChatGPT
+**Aplicación Amigo Invisible**
 
-### Enunciado
-  - Añadir argumento: documento de enunciado / criterio de evaluación en local o conectando con algún servicio como Google Drive o similar
-  - Captar argumento de ruta automáticamente del documento
-  - Conectar con IA para evaluación
+Le he quitado la carpeta vendor y node_modules, las regeneras con
+- composer install
+- npm install
 
-Vamos a intentar hacerlo con Node.js como framework por que tiene paquetes oficiales de la api de chatGPT de openAI
+Revisa el fichero .env
+Mira el pequeño cambio en package.json (la linea de añadir ...33.20)
+Usa el fichero arranque.bat para ejecutar la aplicación y fijate que use el puerto 8000, si no, reinicia la máquina virtual.
 
+
+Carga los datos iniciales con la instrucción
+- php artisan migrate:fresh --seed
+
+Comandos nuevos:
+- php artisan make:request StoreGrupoRequest
+- php artisan make:controller --invokable SorteoController
