@@ -50,3 +50,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Rubricas
 Route::resource('rubricas', RubricaController::class)->middleware('auth');
+
+
+
+// ROLES
+use App\Http\Controllers\UserController;
+
+Route::post('/user/{id}/assign-role', [UserController::class, 'assignRoleToUser']);
